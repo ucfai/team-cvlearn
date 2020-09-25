@@ -40,6 +40,7 @@
 **Topics**
 
 - Pandas
+- git
 
 **Reading material**:
 
@@ -52,6 +53,7 @@
 **Topics**
 
 - ML intro
+- vim
 
 **Reading material**:
 
