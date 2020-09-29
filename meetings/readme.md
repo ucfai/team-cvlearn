@@ -26,22 +26,37 @@ jupytext --to notebook script.py
 
 **Topics**:
 
-- Terminal
-  - The pacman package manager
-  - Basic terminal commands
-  - Installing [pyenv](https://github.com/pyenv/pyenv)
-- Python
-  - Numpy
-  - Matplotlib/seaborn
+- The pacman package manager
+- Basic terminal commands
+- Installing [pyenv](https://github.com/pyenv/pyenv)
 
 **Reading material**:
 
-- Numpy: https://cs231n.github.io/python-numpy-tutorial/
 - Terminal commands: http://linuxcommand.org/
 
 ---
 
 ### Oct 4
+
+**Topics**
+
+- Numpy
+- Matplotlib/seaborn
+
+**Reading material**
+
+- Numpy: https://cs231n.github.io/python-numpy-tutorial/
+- Matplotlib/seaborn: Meeting notes
+
+---
+
+### Oct 11
+
+No meeting
+
+---
+
+### Oct 18
 
 **Topics**
 
@@ -54,7 +69,7 @@ jupytext --to notebook script.py
 
 ---
 
-### Oct 11
+### Oct 25
 
 **Topics**
 
@@ -67,29 +82,12 @@ jupytext --to notebook script.py
 
 ---
 
-### Oct 18
-
-**Topics**
-
-- More ML algs
-- tmux
-
----
-
-### Oct 25
-
-**Topics**
-
-- git branches
-- zsh
-
----
-
 ### Nov 1
 
 **Topics**
 
-- latex
+- More ML algs
+- git branches
 
 ---
 
@@ -97,4 +95,13 @@ jupytext --to notebook script.py
 
 **Topics**
 
-- Some terminal apps (ranger, fzf)
+- tmux
+- zsh
+
+---
+
+### Nov 15
+
+**Topics**
+
+- latex
