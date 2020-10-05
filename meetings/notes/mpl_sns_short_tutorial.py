@@ -34,7 +34,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # For reproducibility
-np.random.rand(42)
+np.random.seed(42)
 
 # %%
 # Example plot from
@@ -209,7 +209,7 @@ ax[2].plot(x, x ** 3, c="blue", linestyle="--", linewidth=3)
 
 # %%
 points = np.random.rand(150, 2)
-
+print(points[:10])
 plt.scatter(points[:, 0], points[:, 1])
 
 # %% [markdown]

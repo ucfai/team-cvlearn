@@ -42,6 +42,7 @@ jupytext --to notebook script.py
 
 - Numpy
 - Matplotlib/seaborn
+- git
 
 **Reading material**
 
@@ -52,24 +53,16 @@ jupytext --to notebook script.py
 
 ### Oct 11
 
-No meeting
-
----
-
-### Oct 18
-
-**Topics**
-
-- Pandas
-- git
+No meeting, but learn pandas
 
 **Reading material**:
 
 - [Exploratory data analysis with Pandas by mlcourse.ai](https://mlcourse.ai/articles/topic1-exploratory-data-analysis-with-pandas/)
+- [Kaggle courses](https://www.kaggle.com/learn/overview)
 
 ---
 
-### Oct 25
+### Oct 18
 
 **Topics**
 
@@ -82,7 +75,7 @@ No meeting
 
 ---
 
-### Nov 1
+### Oct 25
 
 **Topics**
 
@@ -91,12 +84,22 @@ No meeting
 
 ---
 
+### Nov 1
+
+**Topics**
+
+- Intro deep learning
+- Multilayer perceptrons
+- zsh
+
+---
+
 ### Nov 8
 
 **Topics**
 
+- Convolutional neural networks
 - tmux
-- zsh
 
 ---
 
@@ -104,4 +107,4 @@ No meeting
 
 **Topics**
 
-- latex
+- LaTeX
