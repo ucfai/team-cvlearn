@@ -66,12 +66,13 @@ No meeting, but learn pandas
 
 **Topics**
 
-- ML intro / algorithms
+- Supervised Machine Learning
 - vim
 
 **Reading material**:
 
 - Hands on book ch 2
+- https://jakevdp.github.io/PythonDataScienceHandbook/
 
 ---
 
@@ -79,7 +80,7 @@ No meeting, but learn pandas
 
 **Topics**
 
-- More ML algs
+- Unsupervised Machine Learning
 - git branches
 
 ---
@@ -88,9 +89,13 @@ No meeting, but learn pandas
 
 **Topics**
 
-- Intro deep learning
+- Deep learning Introduction
 - Multilayer perceptrons
 - zsh
+
+**Reading material / demos**
+
+- https://playground.tensorflow.org/
 
 ---
 
@@ -100,6 +105,12 @@ No meeting, but learn pandas
 
 - Convolutional neural networks
 - tmux
+
+**Reading material / demos**
+
+- https://cs231n.github.io/convolutional-networks/
+- https://poloclub.github.io/cnn-explainer/
+- https://tensorspace.org/index.html
 
 ---
 
