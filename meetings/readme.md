@@ -95,6 +95,7 @@ No meeting, but learn pandas
 
 **Reading material / demos**
 
+- 3Blue1Brown's series on neural networks. [Part 1](https://www.youtube.com/watch?v=aircAruvnKk)
 - https://playground.tensorflow.org/
 
 ---
