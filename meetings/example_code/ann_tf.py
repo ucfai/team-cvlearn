@@ -35,7 +35,9 @@ ann.compile(optimizer="sgd", loss="categorical_crossentropy", metrics=["accuracy
 ann.summary()
 
 # %%
-history = ann.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=EPOCHS)
+history = ann.fit(
+    x_train, y_train, validation_data=(x_test, y_test), epochs=EPOCHS, batch_size=64
+)
 
 
 # %%

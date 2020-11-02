@@ -9,7 +9,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torch import nn, optim
 from torch.utils.data import DataLoader
 from torchsummary import summary
 from torchvision.datasets import MNIST
@@ -118,7 +117,6 @@ for epoch in range(EPOCHS):
     print(f"Epoch {epoch + 1} loss: {running_loss / len(train)}")
 
 print("Finished Training")
-
 
 ###########################################################
 # Validate/evaluate the model
