@@ -2,4 +2,12 @@
 
 ## Members
 
-(To be filled out during git session)
+
+Ryan Pattillo
+Kenley Rodriguez
+Britney Baron
+Andrei Gulapa
+Abhijeet Malviya
+Tim Yang
+Jonathan Dieu
+Alex Somwaru
