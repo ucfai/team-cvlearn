@@ -24,9 +24,13 @@ def graph(prediction_classes,prediction_probabilities):
 
     return fig
 
+def get_model():
+    model = ResNet50(weights='imagenet')
+    return model
+
 if __name__ == "__main__":  
 
-    model = keras.models.load_model("/Users/ryanpattillo/Documents/machineLearning/CvLearnNew/project/model") #Loads the saved model
+    model = get_model()
 
     img_path = '../images/car.jpg' #path for hte image
     img = image.load_img(img_path, target_size=(224, 224)) #loads the image and sizes accordingly
