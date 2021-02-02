@@ -1,4 +1,4 @@
-##Books##
+## Books
  
 https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646
 
@@ -6,7 +6,7 @@ https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032
  
  
  
-##Material Covered:
+## Material Covered:
  
 **Neural Networks:**
  
@@ -35,7 +35,7 @@ https://www.youtube.com/watch?v=tIeHLnjs5U8&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-
 https://www.tensorflow.org/tutorials/keras/classification
  
  
-##CNNS:
+## CNNS:
  
 *Article:*
  
@@ -46,17 +46,17 @@ https://cs231n.github.io/convolutional-networks/
 https://keras.io/examples/vision/mnist_convnet/
  
  
-##Additional Resources:
+## Additional Resources:
  
 https://poloclub.github.io/cnn-explainer/
  
 https://playground.tensorflow.org/
  
  
-##Pre Trained Models:
+## Pre Trained Models:
 
 https://keras.io/api/applications/
 
-##Streamlit Documentation
+## Streamlit Documentation
 
 https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py
