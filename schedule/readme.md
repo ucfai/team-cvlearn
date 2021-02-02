@@ -2,7 +2,7 @@
 
 ## Feb 1st -> Feb 8th
 
-Create classifier using chosen model. 
+Create classifier using chosen model.   
 Display the predictions usign streamlit and matplotlib
 We will vote on the best design for display
 
