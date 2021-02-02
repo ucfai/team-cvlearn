@@ -1,20 +1,3 @@
-# cvlearn
+## Cvlearn
 
-## Members
-
-
-Ryan Pattillo
-#
-Kenley Rodriguez
-#
-Britney Baron
-#
-Andrei Gulapa
-#
-Abhijeet Malviya
-#
-Tim Yang
-#
-Jonathan Dieu
-#
-Alex Somwaru
+Computer vision dashboard using tensorflow/keras and streamlit. 
