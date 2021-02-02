@@ -1,6 +1,6 @@
 ## Git Commands
 
-**git clone <url>** will clone the remote repository to the local repository. 
+**git clone <url>** will clone the remote repository to the local repository.   
 **git add <filename>** will stage a file. 
 ** git add -A ** will stage all files
 ** git commit -m "<message>" ** will commit the changes with the message. 
