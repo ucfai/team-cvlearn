@@ -57,6 +57,10 @@ https://playground.tensorflow.org/
 
 https://keras.io/api/applications/
 
+## Google quickdraw documentation (Potential Project Feature)
+
+https://github.com/googlecreativelab/quickdraw-dataset
+
 ## Streamlit Documentation
 
 https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py
