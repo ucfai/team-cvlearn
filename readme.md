@@ -21,7 +21,7 @@ use **git branch** <name> to create a branch to work on.
 use **git checkout** <name> to switch to that branch.   
 
 Once on branch you can make necessary changes to your files.     
-When you want to commit use **git push origin <branch name>**   
+When you want to commit use **git push origin** branch name   
 Then go to github url and submit pull request, I will then review your code and approve the request to merge onto main.    
 
 
