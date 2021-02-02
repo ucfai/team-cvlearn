@@ -9,10 +9,10 @@
 
 # Branches
 
-**git branch** will display the branches. 
-**git branch <name>** will create a new branch with the name. 
-**git checkout <name>** will switch branches to the branch (name). 
-**git merge <name>** will merge the current branch with branch (name). 
+**git branch** will display the branches.   
+**git branch <name>** will create a new branch with the name.   
+**git checkout <name>** will switch branches to the branch (name).  
+**git merge <name>** will merge the current branch with branch (name).   
 
 ## How to make changes
 
