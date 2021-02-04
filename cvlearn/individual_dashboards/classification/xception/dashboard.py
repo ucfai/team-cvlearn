@@ -12,4 +12,3 @@ if __name__ == "__main__":
 
     picture = '/Users/kenleyrodriguez12/OneDrive - Knights - University of Central Florida/cvlearn/team-cvlearn/cvlearn/individual_dashboards/classification/images/car.jpg'
     st.image(picture, caption='car', use_column_width=True)
-    x = "hello"
