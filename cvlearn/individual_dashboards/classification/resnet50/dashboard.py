@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     model = get_model()
 
-    img_path = '../images/car.jpg' #path for the image
+    img_path = '../images/pig.jpeg' #path for the image
     img = image.load_img(img_path, target_size=(224, 224)) #loads the image and sizes accordingly
     x = image.img_to_array(img) #turns the image to an array so the model can use
     x = np.expand_dims(x, axis=0) #Expands by a row to represent a batch size of 1. 

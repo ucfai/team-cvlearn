@@ -25,7 +25,7 @@ def graph(predictions):
 
 if __name__ == "__main__":
 
-     model = keras.models.load_model("/Users/ryanpattillo/Documents/machineLearning/CvLearnNew/coding_session_live/saved_model")
+     model = keras.models.load_model("saved_model")
 
 
      sepal_length = st.number_input("Sepal Length")
