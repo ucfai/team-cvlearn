@@ -1,15 +1,15 @@
 import streamlit as st
 import numpy as np
 from tensorflow import keras
-from keras.applications.xception import Xception
-from keras.applications.xception import preprocess_input, decode_predictions
+from tensorflow.keras.applications.xception import Xception
+from tensorflow.keras.applications.xception import preprocess_input, decode_predictions
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing import image
 
 
 def graph(prediction_classes, prediction_probabilities):
 
-    fig, ax = plt.subplots(nrows=2)
+    fig, ax = plt.subplots()
 
     ax.barh(0, prediction_probabilities[0])
     ax.barh(1, prediction_probabilities[1])
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     model = Xception(weights='imagenet')
 
-    picture = '/Users/kenleyrodriguez12/OneDrive - Knights - University of Central Florida/cvlearn/team-cvlearn/cvlearn/individual_dashboards/classification/images/car.jpg'
+    picture = '../images/car.jpg'
     pic = image.load_img(picture, target_size=(299, 299))
     st.image(pic, caption='car', use_column_width=True)
 
