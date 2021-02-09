@@ -1,6 +1,5 @@
 import numpy as np 
 import streamlit as st 
-from pprint import pprint
 from tensorflow import keras 
 import matplotlib.pyplot as plt
 from tensorflow.keras.preprocessing import image
@@ -21,26 +20,29 @@ def get_model():
     return model
 
 def graph(classes, probabilities, predict_num):
-    fig,ax = plt.subplots()
+    fig, ax = plt.subplots()
 
-    for x in range(predict_num):
-        ax.barh(x,prediction_probabilities[x]) #Adds the third bar
+    ax.bar(0, prediction_probabilities[0], color="green")
+
+    for x in range(1, predict_num):
+        ax.bar(x, prediction_probabilities[x], color="gray") #Adds the third bar
 
     y = np.arange(predict_num) #Creates an array of [1,2,3] for the ticks
-    ax.set_yticks(y) #Creates ticks on graph 
-    ax.set_yticklabels(prediction_classes) #adds the labels
+    # ax.set_yticks(y) #Creates ticks on graph 
+    ax.set_ylabel("Probability") #adds the labels
 
     #Adds titles and labels
-    ax.set_xlabel('Probability') 
+    ax.set_xticks(np.arange(predict_num))
+    ax.set_xticklabels(list(prediction_classes)) 
     ax.set_title('Predictions')
 
     return fig
-    pass
 
 if __name__ == "__main__":
     model = get_model()
 
-    img = image.load_img("../images/car.jpg", target_size=(224, 224, 3))
+    path =  "../images/car.jpg"
+    img = image.load_img(path, target_size=(224, 224, 3))
     arr_img = image.img_to_array(img)
     arr_img = np.array([arr_img])
 
@@ -53,7 +55,7 @@ if __name__ == "__main__":
 
     st.text("Hello!")
     num_pd = st.number_input("Number of predictions", min_value=1, max_value=10)
-    st.image('../images/car.jpg')
+    st.image(path)
 
     predictions = decode_predictions(preds, top=num_pd)[0] #only one sample in the batch [0]
   
