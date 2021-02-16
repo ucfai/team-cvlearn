@@ -6,8 +6,6 @@ import streamlit as st
 from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-
 
 def graph(predictions_classes, predictions_probabilities, predict_num):
 

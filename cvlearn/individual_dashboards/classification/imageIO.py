@@ -11,6 +11,7 @@ def get_internet_image(image_address,size):
     image = io.BytesIO(r.content) #Create a BytesIO object which turns the image into a file object in memory. It is just a buffer in memory
     image = Image.open(image) # Opens the image
     image = image.resize(size) #Resizes the image to appropriate format
+    #np.array(image) will return the image as a numpy array.
     return image
 
 def get_file_image(file, size):

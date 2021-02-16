@@ -33,7 +33,7 @@ def format_image(image,size):
 
     return image
 
-
+@st.cache
 def get_predictions(model_name: str,image,num_pd):
 
     if model_name == "xception":
@@ -54,7 +54,6 @@ def get_predictions(model_name: str,image,num_pd):
 
 
     return predictions
-
 
 
 def xception(image,num_pd):
