@@ -65,14 +65,10 @@ def get_predictions(model_name: str, image, num_pd):
     return predictions
 
 
-<<<<<<< HEAD
-def xception(image,num_pd):
-=======
 def xception(image, num_pd):
     image = format_image(image, (299, 299))
 
     model = keras.applications.Xception(weights="imagenet")
->>>>>>> b2f23126159e97b17c13159fb5ae74c1de46f1bb
 
     image = xception_preprocess(image)
 
