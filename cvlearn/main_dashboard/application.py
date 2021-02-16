@@ -143,17 +143,17 @@ def graph(predictions):
 
     fig, ax = plt.subplots()
 
-    ax.bar(0, prediction_probabilities[0], color="green")
+    ax.barh(0, prediction_probabilities[0], color="green")
 
     for x in range(1, num_pd):
-        ax.bar(x, prediction_probabilities[x], color="gray")  # Adds the third bar
+        ax.barh(x, prediction_probabilities[x], color="gray")  # Adds the third bar
 
     # ax.set_yticks(y) #Creates ticks on graph
-    ax.set_ylabel("Probability")  # adds the labels
+    ax.set_xlabel("Probability")  # adds the labels
 
     # Adds titles and labels
-    ax.set_xticks(np.arange(num_pd))
-    ax.set_xticklabels(list(prediction_classes))
+    ax.set_yticks(np.arange(num_pd))
+    ax.set_yticklabels(list(prediction_classes))
     ax.set_title("Predictions")
 
     col2.write(fig)
