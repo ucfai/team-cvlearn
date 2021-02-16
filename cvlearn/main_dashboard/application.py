@@ -18,15 +18,17 @@ from tensorflow.keras.applications.xception import (
 
 
 def get_internet_image(image_address):
+  
     r = requests.get(image_address)
     bytes = io.BytesIO(r.content)
     image = Image.open(bytes)
-    st.image(image)
+    col1.image(image,use_column_width=True)
     return image
 
 
 def get_file_image(image_file):
     image = Image.open(image_file)
+    col1.image(image,use_column_width=True)
 
     return image
 
@@ -38,14 +40,8 @@ def format_image(image, size):
 
     return image
 
-<<<<<<< HEAD
-@st.cache
-def get_predictions(model_name: str,image,num_pd):
-
-=======
 
 def get_predictions(model_name: str, image, num_pd):
->>>>>>> b2f23126159e97b17c13159fb5ae74c1de46f1bb
     if model_name == "xception":
 
         predictions = xception(image, num_pd)
@@ -134,6 +130,8 @@ def resnet(image, num_pd):
 
 def graph(predictions):
 
+  
+
     num_pd = len(predictions)
 
     prediction_classes = np.array(
@@ -158,16 +156,18 @@ def graph(predictions):
     ax.set_xticklabels(list(prediction_classes))
     ax.set_title("Predictions")
 
-    st.write(fig)
+    col2.write(fig)
 
 
 if __name__ == "__main__":
+
     image_address = st.text_input("Enter image url")
     image_file = st.file_uploader("Upload an image")
 
-    selection = st.selectbox("Select", ["xception", "nasnet", "inception", "resnet"])
+    col1,col2 = st.beta_columns(2)
+    selection = col1.selectbox("Select", ["xception", "nasnet", "inception", "resnet"])
 
-    num_pd = st.slider("Number of predictions", min_value=1, max_value=25)
+    num_pd = col2.slider("Number of predictions", min_value=1, max_value=25)
 
     if image_address:
         image = get_internet_image(image_address)
