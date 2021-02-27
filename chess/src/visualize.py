@@ -6,8 +6,8 @@ import streamlit as st
 
 def colorChannels(image): #View Color Spaces
 
-    choice = st.sidebar.selectbox('Color Channels', ["HSV","GRAY"])
-
+    #choice = st.sidebar.selectbox('Color Channels', ["HSV","GRAY"])
+    choice = "GRAY"
     if(choice == "HSV"):
         image = cv.cvtColor(image,cv.COLOR_BGR2HSV)
 
@@ -27,9 +27,7 @@ def hough(image, edges):
 
 
     lines = cv.HoughLines(edges,1,np.pi/180,150, None, 0, 0)
-    print("lines")
-    print(lines.shape)
-
+ 
     for i in range(0, len(lines)):
         rho = lines[i][0][0]
         theta = lines[i][0][1]
@@ -100,7 +98,8 @@ def thresholds(image): #
 
 def blurring(image):
 
-    type = st.sidebar.selectbox("Blur Type",["None","Boxfilter","Gaussian","Median","Bilateral"])
+    #type = st.sidebar.selectbox("Blur Type",["None","Boxfilter","Gaussian","Median","Bilateral"])
+    type = 'Gaussian'
 
     if(type == "None"):
         return image
@@ -140,7 +139,8 @@ def blurring(image):
 
 def corners(image):
 
-    choice = st.sidebar.selectbox('Edge Detection', ["None","Canny","Shi-Tomashi"])
+    #choice = st.sidebar.selectbox('Edge Detection', ["None","Canny","Shi-Tomashi"])
+    choice = "Canny"
 
     if(choice == "None"):
         return image
@@ -174,7 +174,10 @@ def corners(image):
 
 def contour(image):
 
-    choice = st.sidebar.selectbox("Contour",["None","Contour"])
+    #choice = st.sidebar.selectbox("Contour",["None","Contour"])
+    choice = "Contour"
+    count = 0
+    newcontours = {}
 
     if(choice == "None") :
         return image
@@ -184,13 +187,32 @@ def contour(image):
     image = cv.cvtColor(image,cv.COLOR_GRAY2RGB)
 
     val = st.sidebar.slider("Perimeter Limit",min_value=1, max_value=10000)
+    pixelSum = st.sidebar.slider("Sum",min_value=0,max_value=1000000)
+    square = st.sidebar.slider("Square",min_value=0,max_value=63)
 
     for contour in contours:
         
-        perimeter = cv.arcLength(contour, True)
+        perimeter = cv.contourArea(contour, False)
 
         if(perimeter>val):
-            image = cv.drawContours(image,[contour],0,(0,0,255),5)
+
+            newcontours[count] = contour
+            count = count + 1
+            #mask = np.zeros_like(image)
+            #image = cv.drawContours(mask,[contour],0,(255,0,0),1)
+            #ret,image = cv.threshold(image,min,max,0)
+            #out = np.zeros_like(image) # Extract out the object and place into output image
+            #out[mask == 255] = image[mask == 255]
+
+            #if(np.sum(out) == 527850):
+               # count = count + 1
+
+            #print(contour.shape)
+
+    if(square!=0):            
+        image = cv.drawContours(image,[newcontours[square]],0,(255,0,0),1)
+
+    print(count)
 
     return image
 
