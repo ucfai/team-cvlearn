@@ -2,8 +2,7 @@
  
 https://www.amazon.com/Hands-Machine-Learning-Scikit-Learn-TensorFlow/dp/1492032646
 
- https://www.amazon.com/Deep-Learning-Python-Francois-Chollet/dp/1617294438/ref=asc_df_1617294438/?tag=hyprod-20&linkCode=df0&hvadid=266029226349&hvpos=&hvnetw=g&hvrand=5829894814850412269&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9053023&hvtargid=pla-356949152624&psc=1
- 
+https://livebook.manning.com/book/deep-learning-with-python/chapter-1?origin=product-toc
  
  
 ## Material Covered:
@@ -64,3 +63,8 @@ https://github.com/googlecreativelab/quickdraw-dataset
 ## Streamlit Documentation
 
 https://share.streamlit.io/daniellewisdl/streamlit-cheat-sheet/app.py
+
+## Opencv Documentation
+
+https://www.geeksforgeeks.org/opencv-python-tutorial/#images
+
