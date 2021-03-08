@@ -6,7 +6,7 @@ import streamlit as st
 
 def colorChannels(image): #View Color Spaces
 
-    #choice = st.sidebar.selectbox('Color Channels', ["HSV","GRAY"])
+    choice = st.sidebar.selectbox('Color Channels', ["HSV","GRAY"])
     choice = "GRAY"
     if(choice == "HSV"):
         image = cv.cvtColor(image,cv.COLOR_BGR2HSV)
@@ -139,7 +139,7 @@ def blurring(image):
 
 def corners(image):
 
-    #choice = st.sidebar.selectbox('Edge Detection', ["None","Canny","Shi-Tomashi"])
+    choice = st.sidebar.selectbox('Edge Detection', ["None","Canny","Shi-Tomashi"])
     choice = "Canny"
 
     if(choice == "None"):
@@ -174,7 +174,7 @@ def corners(image):
 
 def contour(image):
 
-    #choice = st.sidebar.selectbox("Contour",["None","Contour"])
+    choice = st.sidebar.selectbox("Contour",["None","Contour"])
     choice = "Contour"
     count = 0
     newcontours = {}
