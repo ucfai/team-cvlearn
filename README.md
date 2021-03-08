@@ -1,3 +1,3 @@
-## Cvlearn
+## Repository For team cvlearn
 
-Computer vision dashboard using tensorflow/keras and streamlit. 
+# We are a project group from the Artificial Intelligence club at the University of Central Florida. 
