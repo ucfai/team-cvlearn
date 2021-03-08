@@ -4,7 +4,7 @@
 # Computer vision dashboard using Tensorflow , and Streamlit
 
 
-![Application](screenshot.jpeg)
+![Application](screenshot.jpg)
 
 
 
