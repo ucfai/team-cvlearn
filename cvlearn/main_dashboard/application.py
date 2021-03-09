@@ -1,8 +1,9 @@
 import io
-
+# necessary imports
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
+# open source app framework designed for use with data science and machine learning
 import streamlit as st
 from PIL import Image
 from tensorflow import keras
@@ -15,8 +16,11 @@ from tensorflow.keras.applications.resnet50 import preprocess_input as resnet_pr
 from tensorflow.keras.applications.xception import (
     preprocess_input as xception_preprocess,
 )
+# We used these pretrained models because we didn't Streamlit run and application.py and it'll 
+# Different architectures and unique capacities trained on imagenet, which was 14 million images
+# Experience with tensorflow and Streamlit
 
-
+# Uses request library to send an http request 
 def get_internet_image(image_address):
     r = requests.get(image_address)
     bytes = io.BytesIO(r.content)
@@ -24,13 +28,13 @@ def get_internet_image(image_address):
     st.image(image)
     return image
 
-
+# Get from the file which is provided by streamlit
 def get_file_image(image_file):
     image = Image.open(image_file)
 
     return image
 
-
+# Formats the image to the provided size by passing in the image and its size
 def format_image(image, size):
     image = image.resize(size)
     image = np.array(image)
@@ -43,7 +47,7 @@ def format_image(image, size):
 def get_predictions(model_name: str,image,num_pd):
 
 =======
-
+# Different prediction models that are already pre-trained on a set of images
 def get_predictions(model_name: str, image, num_pd):
 >>>>>>> b2f23126159e97b17c13159fb5ae74c1de46f1bb
     if model_name == "xception":
@@ -64,7 +68,7 @@ def get_predictions(model_name: str, image, num_pd):
 
     return predictions
 
-
+# function for the xception model
 def xception(image, num_pd):
     image = format_image(image, (299, 299))
 
@@ -78,7 +82,7 @@ def xception(image, num_pd):
 
     return results
 
-
+# 
 def nasnet(image, num_pd):
     image = format_image(image, (224, 224))
 
