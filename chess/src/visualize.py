@@ -200,6 +200,34 @@ def contour(image):
 
     return image
 
+#This code will help us to input an image from the user in the dashboard
+class FileUpload(object):
+ 
+    def __init__(self):
+        self.fileTypes = ["png", "jpg"]
+ 
+    def run(self):
+
+        st.info(__doc__)
+        st.markdown(STYLE, unsafe_allow_html=True)
+        file = st.file_uploader("Upload file", type=self.fileTypes)
+        show_file = st.empty()
+        
+        if not file:
+            show_file.info("Please upload a file of type: " + ", ".join(["png", "jpg"]))
+            
+            
+        content = file.getvalue()
+        
+        if isinstance(file, BytesIO):             
+            show_file.image(file)
+            st.image(file, caption='Original Chess') #We know the file uploaded is image
+
+        else:
+            data = pd.read_csv(file)
+            st.dataframe(data.head(10))
+        file.close()
+
 
 if __name__ == "__main__":
 
