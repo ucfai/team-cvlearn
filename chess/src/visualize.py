@@ -12,7 +12,7 @@ def colorChannels(image): #View Color Spaces
         image = cv.cvtColor(image,cv.COLOR_BGR2HSV)
 
     if(choice == "GRAY"):
-        image = cv.cvtColor(image,cv.COLOR_BGR2GRAY) 
+        image = cv.cvtColor(image,cv.COLOR_BGR2GRAY)
 
     return image
 
@@ -27,7 +27,7 @@ def hough(image, edges):
 
 
     lines = cv.HoughLines(edges,1,np.pi/180,150, None, 0, 0)
- 
+
     for i in range(0, len(lines)):
         rho = lines[i][0][0]
         theta = lines[i][0][1]
@@ -38,7 +38,7 @@ def hough(image, edges):
         pt1 = (int(x0 + 1000*(-b)), int(y0 + 1000*(a)))
         pt2 = (int(x0 - 1000*(-b)), int(y0 - 1000*(a)))
         image = cv.line(image, pt1, pt2, (0,0,0), 2, cv.LINE_AA)
-    
+
     return image
 
 def threshType(thresh):
@@ -46,7 +46,7 @@ def threshType(thresh):
     thresh = 0
 
     if(thresh == "Binary"):
-        thresh = cv.THRESH_BINARY 
+        thresh = cv.THRESH_BINARY
 
     if(thresh == "BinaryINV"):
         thresh = cv.THRESH_BINARY_INV
@@ -60,10 +60,10 @@ def threshType(thresh):
     if(thresh == "TOZEROINV"):
         thresh = cv.THRESH_TOZERO_INV
 
-    return thresh    
+    return thresh
 
 
-def thresholds(image): #
+def thresholds(image): #Selects type of threshold: Binary being 0s and 1s and BinaryINV
 
     thresh = st.sidebar.selectbox('Select', ["None","Binary","BinaryINV", "Trunc","TOZERO","TOZEROINV", "Adaptive"])
 
@@ -78,7 +78,7 @@ def thresholds(image): #
         if(method == "Mean"):
             method = cv.ADAPTIVE_THRESH_MEAN_C
         if(method == "Gaussian"):
-            method = cv.ADAPTIVE_THRESH_GAUSSIAN_C    
+            method = cv.ADAPTIVE_THRESH_GAUSSIAN_C
 
         thresh = st.sidebar.selectbox('Treshold', ["None","Binary","BinaryINV", "Trunc","TOZERO","TOZEROINV"])
         thresh = threshType(thresh)
@@ -86,7 +86,7 @@ def thresholds(image): #
         constant = st.sidebar.slider("Constant",min_value=1,value = 5, max_value=100)
         image = cv.adaptiveThreshold(image,maxVal,method,thresh,block_size,constant)
         return image
-     
+
 
     min = st.sidebar.slider("Minimum Pixel Intensity",min_value=1,value = 100, max_value=255)
     max = st.sidebar.slider("Maximum Pixel Intensity",min_value=1,value = 255, max_value=255)
@@ -149,12 +149,12 @@ def corners(image):
 
         edges = cv.goodFeaturesToTrack(image,100,0.01,100)
         edges = np.int0(edges)
-         
+
         radius = st.sidebar.slider("Radius",min_value=1,value = 10, max_value=255)
         color =  st.sidebar.slider("Color",min_value=1, max_value=255)
 
         for i in edges:
-           
+
            x,y = i.ravel()
            image = cv.circle(image,(x,y),radius,(color,0,0))
 
@@ -191,7 +191,7 @@ def contour(image):
     square = st.sidebar.slider("Square",min_value=0,max_value=63)
 
     for contour in contours:
-        
+
         perimeter = cv.contourArea(contour, False)
 
         if(perimeter>val):
@@ -209,7 +209,7 @@ def contour(image):
 
             #print(contour.shape)
 
-    if(square!=0):            
+    if(square!=0):
         image = cv.drawContours(image,[newcontours[square]],0,(255,0,0),1)
 
     print(count)
@@ -229,10 +229,3 @@ if __name__ == "__main__":
 
     col =  st.beta_columns(1)
     col[0].image(image,use_column_width=True)
-
- 
-   
-        
-
-        
-
