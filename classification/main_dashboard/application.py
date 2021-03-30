@@ -22,15 +22,17 @@ from tensorflow.keras.applications.xception import (
 
 # Uses request library to send an http request 
 def get_internet_image(image_address):
+  
     r = requests.get(image_address)
     bytes = io.BytesIO(r.content)
     image = Image.open(bytes)
-    st.image(image)
+    col1.image(image,use_column_width=True)
     return image
 
 # Get from the file which is provided by streamlit
 def get_file_image(image_file):
     image = Image.open(image_file)
+    col1.image(image,use_column_width=True)
 
     return image
 
@@ -42,14 +44,17 @@ def format_image(image, size):
 
     return image
 
+<<<<<<< HEAD:cvlearn/main_dashboard/application.py
 <<<<<<< HEAD
 @st.cache
 def get_predictions(model_name: str,image,num_pd):
 
 =======
 # Different prediction models that are already pre-trained on a set of images
+=======
+
+>>>>>>> b2c257520ba2d4a102f139e7022f0e9ca8cd324d:classification/main_dashboard/application.py
 def get_predictions(model_name: str, image, num_pd):
->>>>>>> b2f23126159e97b17c13159fb5ae74c1de46f1bb
     if model_name == "xception":
 
         predictions = xception(image, num_pd)
@@ -138,6 +143,8 @@ def resnet(image, num_pd):
 
 def graph(predictions):
 
+  
+
     num_pd = len(predictions)
 
     prediction_classes = np.array(
@@ -149,29 +156,31 @@ def graph(predictions):
 
     fig, ax = plt.subplots()
 
-    ax.bar(0, prediction_probabilities[0], color="green")
+    ax.barh(0, prediction_probabilities[0], color="green")
 
     for x in range(1, num_pd):
-        ax.bar(x, prediction_probabilities[x], color="gray")  # Adds the third bar
+        ax.barh(x, prediction_probabilities[x], color="gray")  # Adds the third bar
 
     # ax.set_yticks(y) #Creates ticks on graph
-    ax.set_ylabel("Probability")  # adds the labels
+    ax.set_xlabel("Probability")  # adds the labels
 
     # Adds titles and labels
-    ax.set_xticks(np.arange(num_pd))
-    ax.set_xticklabels(list(prediction_classes))
+    ax.set_yticks(np.arange(num_pd))
+    ax.set_yticklabels(list(prediction_classes))
     ax.set_title("Predictions")
 
-    st.write(fig)
+    col2.write(fig)
 
 
 if __name__ == "__main__":
+
     image_address = st.text_input("Enter image url")
     image_file = st.file_uploader("Upload an image")
 
-    selection = st.selectbox("Select", ["xception", "nasnet", "inception", "resnet"])
+    col1,col2 = st.beta_columns(2)
+    selection = col1.selectbox("Select", ["xception", "nasnet", "inception", "resnet"])
 
-    num_pd = st.slider("Number of predictions", min_value=1, max_value=25)
+    num_pd = col2.slider("Number of predictions", min_value=1, max_value=25)
 
     if image_address:
         image = get_internet_image(image_address)
