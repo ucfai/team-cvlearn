@@ -16,6 +16,9 @@ def colorChannels(image): #View Color Spaces
 
     return image
 
+# Transforming the image 
+
+
 def hough(image, edges):
 
     #dst: Output of the edge detector. It should be a grayscale image (although in fact it is a binary one)
@@ -84,6 +87,7 @@ def thresholds(image): #
         image = cv.adaptiveThreshold(image,maxVal,method,thresh,block_size,constant)
         return image
      
+   
 
     min = st.sidebar.slider("Minimum Pixel Intensity",min_value=1,value = 100, max_value=255)
     max = st.sidebar.slider("Maximum Pixel Intensity",min_value=1,value = 255, max_value=255)
@@ -169,20 +173,24 @@ def corners(image):
 
 def contour(image):
 
+    square_sums = []
+
     choice = st.sidebar.selectbox("Contour",["None","Contour"])
     count = 0
-    newcontours = {}
+    newcontours = []
 
     if(choice == "None") :
         return image
 
     contours,hierarchy = cv.findContours(image,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
 
-    image = cv.cvtColor(image,cv.COLOR_GRAY2RGB)
+    #image = cv.cvtColor(image,cv.COLOR_GRAY2RGB)
 
     val = st.sidebar.slider("Perimeter Limit",min_value=1, max_value=10000)
     pixelSum = st.sidebar.slider("Sum",min_value=0,max_value=100000)
     square = st.sidebar.slider("Square",min_value=0,max_value=63)
+
+    zeros = np.zeros(image.shape,dtype="uint8")
 
     for contour in contours:
         
@@ -190,11 +198,18 @@ def contour(image):
 
         if(perimeter>val):
 
-            newcontours[count] = contour #Retrieve all the contours
+            newcontours.append(contour) #Retrieve all the contours
             count = count + 1 
 
-    if(square!=0):            
-        image = cv.drawContours(image,[newcontours[square]],0,(255,0,0),1) #Retrieves a square on the board
+    if(square!=0):    
+        #print(newcontours[square])        
+        mask = cv.drawContours(zeros,[newcontours[square]],-1,255,-1) #Retrieves a square on the board
+        newimg = cv.bitwise_and(image,image,mask = mask)
+        square_sums.append(np.sum(newimg))
+
+
+        print(np.sum(newimg))
+        image = newimg
 
     print(count)
 
@@ -229,15 +244,35 @@ class FileUpload(object):
         file.close()
 
 
+def chessBoardCorners(image):
+
+    choice = st.sidebar.selectbox("Chessboard Corners",["None","Yes"])
+    
+    if(choice == "None"):
+        return image
+
+    ret, corners = cv.findChessboardCorners(image, (4,4), None)
+    print(corners)
+    #If found, draw corners
+    if ret == True:
+        print("test")
+       
+        
+    image = cv.drawChessboardCorners(image, (5,5), corners, ret)
+    return image
+    
+
 if __name__ == "__main__":
 
-    image = cv.imread("image2.png")
+
+    image = cv.imread("test2.jpeg")
     image = colorChannels(image)
     image = blurring(image)
     image = thresholds(image)
     image = corners(image)
     image = contour(image)
-
+    image = chessBoardCorners(image)
+    
     col =  st.beta_columns(1)
     col[0].image(image,use_column_width=True)
 
