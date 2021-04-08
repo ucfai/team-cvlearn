@@ -267,6 +267,24 @@ def chessBoardCorners(image):
     return image
     
 
+def chessBoardCorners(image):
+
+    choice = st.sidebar.selectbox("Chessboard Corners",["None","Yes"])
+    
+    if(choice == "None"):
+        return image
+
+    ret, corners = cv.findChessboardCorners(image, (4,4), None)
+    print(corners)
+    #If found, draw corners
+    if ret == True:
+        print("test")
+       
+        
+    image = cv.drawChessboardCorners(image, (5,5), corners, ret)
+    return image
+    
+
 if __name__ == "__main__":
 
 
@@ -278,6 +296,7 @@ if __name__ == "__main__":
     image = contour(image)
     image = chessBoardCorners(image)
     image = PerspectiveTransform(image)
+
     
     col =  st.beta_columns(1)
     col[0].image(image,use_column_width=True)
