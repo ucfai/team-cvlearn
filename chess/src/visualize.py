@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2 as cv
 import streamlit as st
+from PIL import Image
 
 
 def colorChannels(image): #View Color Spaces
@@ -15,6 +16,9 @@ def colorChannels(image): #View Color Spaces
         image = cv.cvtColor(image,cv.COLOR_BGR2GRAY) 
 
     return image
+
+# Transforming the image 
+
 
 def hough(image, edges):
 
@@ -84,6 +88,7 @@ def thresholds(image): #
         image = cv.adaptiveThreshold(image,maxVal,method,thresh,block_size,constant)
         return image
      
+   
 
     min = st.sidebar.slider("Minimum Pixel Intensity",min_value=1,value = 100, max_value=255)
     max = st.sidebar.slider("Maximum Pixel Intensity",min_value=1,value = 255, max_value=255)
@@ -169,20 +174,24 @@ def corners(image):
 
 def contour(image):
 
+    square_sums = []
+
     choice = st.sidebar.selectbox("Contour",["None","Contour"])
     count = 0
-    newcontours = {}
+    newcontours = []
 
     if(choice == "None") :
         return image
 
     contours,hierarchy = cv.findContours(image,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
 
-    image = cv.cvtColor(image,cv.COLOR_GRAY2RGB)
+    #image = cv.cvtColor(image,cv.COLOR_GRAY2RGB)
 
     val = st.sidebar.slider("Perimeter Limit",min_value=1, max_value=10000)
     pixelSum = st.sidebar.slider("Sum",min_value=0,max_value=100000)
     square = st.sidebar.slider("Square",min_value=0,max_value=63)
+
+    zeros = np.zeros(image.shape,dtype="uint8")
 
     for contour in contours:
         
@@ -190,54 +199,86 @@ def contour(image):
 
         if(perimeter>val):
 
-            newcontours[count] = contour #Retrieve all the contours
+            newcontours.append(contour) #Retrieve all the contours
             count = count + 1 
 
-    if(square!=0):            
-        image = cv.drawContours(image,[newcontours[square]],0,(255,0,0),1) #Retrieves a square on the board
+    if(square!=0):    
+        #print(newcontours[square])        
+        mask = cv.drawContours(zeros,[newcontours[square]],-1,255,-1) #Retrieves a square on the board
+        newimg = cv.bitwise_and(image,image,mask = mask)
+        square_sums.append(np.sum(newimg))
+
+
+        print(np.sum(newimg))
+        image = newimg
 
     print(count)
 
     return image
 
-#This code will help us to input an image from the user in the dashboard
-class FileUpload(object):
- 
-    def __init__(self):
-        self.fileTypes = ["png", "jpg"]
- 
-    def run(self):
 
-        st.info(__doc__)
-        st.markdown(STYLE, unsafe_allow_html=True)
-        file = st.file_uploader("Upload file", type=self.fileTypes)
-        show_file = st.empty()
+#Luis - This function will help us to load the image // It is working 04/07/2021 - Fixed
+def load_image(img):
+    im = Image.open(img)
+    image = np.array(im)
+    return image
+
+st.title("Chess board project")
+img_upload = st.file_uploader(label = "Upload a file", type = ['JPG','PNG']) #Here we are creating the button to upload
+     #a file with the type JPG or PNG
+
+if img_upload is not None: #Then if the img_upload is not None; in other words, is correct. We are going to display
+    img = load_image(img_upload) #Here we are calling the function to process the picture inputted uploaded.
+    st.image(img)
+    st.write("The image was uploaded correctly")
+
+    if img_upload is None: #If the image wasn't uploaded
+        st.write("The image doesn't have the file type JPG or PNG")
+
+#Luis//  Working on this perspective Transform - 04/07/2021
+def PerspectiveTransform(image):
+    
+  choice = st.sidebar.selectbox("Perspective Transform",["None","Yes"])
+  
+  if(choice == "None"):
+      return image
+  
+  else:
+      image = cv.circle(image,(755,43),20,(255,0,0),2) #Here we are dtecting one image. 
+      return image
+#We have to find an effiecent way to detech all the coordinates from the corners
+#In order to change the perspective of the image.
+
+def chessBoardCorners(image):
+
+    choice = st.sidebar.selectbox("Chessboard Corners",["None","Yes"])
+    
+    if(choice == "None"):
+        return image
+
+    ret, corners = cv.findChessboardCorners(image, (4,4), None)
+    print(corners)
+    #If found, draw corners
+    if ret == True:
+        print("test")
+       
         
-        if not file:
-            show_file.info("Please upload a file of type: " + ", ".join(["png", "jpg"]))
-            
-            
-        content = file.getvalue()
-        
-        if isinstance(file, BytesIO):             
-            show_file.image(file)
-            st.image(file, caption='Original Chess') #We know the file uploaded is image
-
-        else:
-            data = pd.read_csv(file)
-            st.dataframe(data.head(10))
-        file.close()
-
+    image = cv.drawChessboardCorners(image, (5,5), corners, ret)
+    return image
+    
 
 if __name__ == "__main__":
 
-    image = cv.imread("image2.png")
+
+    image = cv.imread("test2.jpeg")
     image = colorChannels(image)
     image = blurring(image)
     image = thresholds(image)
     image = corners(image)
     image = contour(image)
-
+    image = chessBoardCorners(image)
+    image = PerspectiveTransform(image)
+    
     col =  st.beta_columns(1)
     col[0].image(image,use_column_width=True)
 
