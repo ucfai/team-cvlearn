@@ -4,7 +4,7 @@ import cv2 as cv
 import streamlit as st
 from PIL import Image
 
-
+#Adding color spaces
 def colorChannels(image): #View Color Spaces
 
     choice = st.sidebar.selectbox('Color Channels', ["HSV","GRAY"])
