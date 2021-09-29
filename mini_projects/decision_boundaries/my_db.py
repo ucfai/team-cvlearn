@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-
+# here is to get dataset name
 def get_dataset(name):
     if name == "iris":
         return datasets.load_iris()
